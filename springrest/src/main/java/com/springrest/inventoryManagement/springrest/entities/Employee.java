@@ -1,17 +1,24 @@
 package com.springrest.inventoryManagement.springrest.entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Employee {
-	
-	private long employeeId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int employeeId;
 	private String employeeName;
 	private String employeeUserName;
 	private String employeeEmail;
 	private String employeePassword;
 	private String employeePhoneNo;
-	private long employeeGoDownId;
+	private int employeeGoDownId;
 	
-	public Employee(long employeeId, String employeeName, String employeeUserName, String employeeEmail,
-			String employeePassword, String employeePhoneNo, long employeeGoDownId) {
+	public Employee(int employeeId, String employeeName, String employeeUserName, String employeeEmail,
+			String employeePassword, String employeePhoneNo, int employeeGoDownId) {
 		super();
 		this.employeeId = employeeId;
 		this.employeeName = employeeName;
@@ -29,11 +36,11 @@ public class Employee {
 	
 	
 
-	public long getEmployeeId() {
+	public int getEmployeeId() {
 		return employeeId;
 	}
 
-	public void setEmployeeId(long employeeId) {
+	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
 	}
 
@@ -77,11 +84,11 @@ public class Employee {
 		this.employeePhoneNo = employeePhoneNo;
 	}
 
-	public long getEmployeeGoDownId() {
+	public int getEmployeeGoDownId() {
 		return employeeGoDownId;
 	}
 
-	public void setEmployeeGoDownId(long employeeGoDownId) {
+	public void setEmployeeGoDownId(int employeeGoDownId) {
 		this.employeeGoDownId = employeeGoDownId;
 	}
 
