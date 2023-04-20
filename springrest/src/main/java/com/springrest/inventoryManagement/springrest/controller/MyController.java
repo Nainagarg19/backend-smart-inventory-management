@@ -24,17 +24,7 @@ public class MyController {
 	EmployeeRepository employeeRepository;
 	
 	List<Employee> employees = new ArrayList<>();
-	
-//	@GetMapping(path="/hello",produces= {MediaType.TEXT_HTML_VALUE})
-//	public String hello() {
-//		return "<h1>HelloWorld!!!</h1>";
-//	}
-	
-//	@GetMapping(path="/employee")
-//	public Employee getEmployee() {
-//		Employee e = new Employee(1,"Pavani",37895.45);
-//		return e;
-//	}
+
 	
 	@GetMapping(path="/employees")
 	public List<Employee> getEmployees() {
@@ -53,15 +43,5 @@ public class MyController {
 
 	}
 	
-	@PatchMapping(path="/employees")
-	public void updateEmployeeSalary(@RequestBody Employee employee) {
-		Optional<Employee> employeeFound=employeeRepository.findById(employee.getId());
-		if(employeeFound.isPresent()) {
-			Employee e = employeeFound.get();
-			e.setSalary(employee.getSalary());
-			employeeRepository.save(e);
-		}
-
-	}
-	
+		
 }
