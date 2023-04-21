@@ -8,7 +8,6 @@ import jakarta.persistence.Id;
 @Entity
 public class Employee {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int employeeId;
 	private String employeeName;
 	private String employeeUserName;
