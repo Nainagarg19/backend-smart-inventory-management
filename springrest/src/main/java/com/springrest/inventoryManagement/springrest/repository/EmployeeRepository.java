@@ -1,4 +1,4 @@
-package com.springrest.inventoryManagement.springrest;
+package com.springrest.inventoryManagement.springrest.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

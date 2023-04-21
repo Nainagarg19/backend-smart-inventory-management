@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.maven.demo.demo.maven.EmployeeRepository;
 import com.springrest.inventoryManagement.springrest.entities.Employee;
-import com.springrest.inventoryManagement.springrest.EmployeeRepository;
+import com.springrest.inventoryManagement.springrest.repository.EmployeeRepository;
+
 
 @RestController
 
@@ -42,6 +42,20 @@ public class MyController {
 		employeeRepository.deleteById(id);
 
 	}
+	@PatchMapping(path="/employees")
+	public void updateEmployeeSalary(@RequestBody Employee employee) {
+		Optional<Employee> employeeFound=employeeRepository.findById(employee.getEmployeeId());
+		if(employeeFound.isPresent()) {
+			Employee e = employeeFound.get();
+			e.setEmployeeEmail(employee.getEmployeeEmail());
+			e.setEmployeeGoDownId(employee.getEmployeeGoDownId());
+			
+			e.setEmployeePassword(employee.getEmployeePassword());
+			e.setEmployeePhoneNo(employee.getEmployeePhoneNo());
+			e.setEmployeeUserName(employee.getEmployeeUserName());
+			
+			employeeRepository.save(e);
+		}
 	
-		
+	}	
 }
