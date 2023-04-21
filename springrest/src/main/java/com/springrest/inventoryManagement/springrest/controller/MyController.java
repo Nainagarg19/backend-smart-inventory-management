@@ -62,7 +62,7 @@ public class MyController {
 
 	}
 	@PatchMapping(path="/employees")
-	public void updateEmployeeSalary(@RequestBody Employee employee) {
+	public void updateEmployee(@RequestBody Employee employee) {
 		Optional<Employee> employeeFound=employeeRepository.findById(employee.getEmployeeId());
 		if(employeeFound.isPresent()) {
 			Employee e = employeeFound.get();
