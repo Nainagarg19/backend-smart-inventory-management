@@ -1,8 +1,6 @@
 package com.springrest.inventoryManagement.springrest.entities;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
@@ -15,8 +13,9 @@ public class Employee {
 	private String employeePassword;
 	private String employeePhoneNo;
 	private int employeeGoDownId;
+	private int employeeType;
 	public Employee(int employeeId, String employeeName, String employeeUserName, String employeeEmail,
-			String employeePassword, String employeePhoneNo, int employeeGoDownId) {
+			String employeePassword, String employeePhoneNo, int employeeGoDownId, int employeeType) {
 		super();
 		this.employeeId = employeeId;
 		this.employeeName = employeeName;
@@ -25,6 +24,7 @@ public class Employee {
 		this.employeePassword = employeePassword;
 		this.employeePhoneNo = employeePhoneNo;
 		this.employeeGoDownId = employeeGoDownId;
+		this.employeeType = employeeType;
 	}
 	public Employee() {
 		super();
@@ -71,11 +71,19 @@ public class Employee {
 	public void setEmployeeGoDownId(int employeeGoDownId) {
 		this.employeeGoDownId = employeeGoDownId;
 	}
+	public int getEmployeeType() {
+		return employeeType;
+	}
+	public void setEmployeeType(int employeeType) {
+		this.employeeType = employeeType;
+	}
 	@Override
 	public String toString() {
 		return "Employee [employeeId=" + employeeId + ", employeeName=" + employeeName + ", employeeUserName="
 				+ employeeUserName + ", employeeEmail=" + employeeEmail + ", employeePassword=" + employeePassword
-				+ ", employeePhoneNo=" + employeePhoneNo + ", employeeGoDownId=" + employeeGoDownId + "]";
+				+ ", employeePhoneNo=" + employeePhoneNo + ", employeeGoDownId=" + employeeGoDownId + ", employeeType="
+				+ employeeType + "]";
 	}
+	
 		
 }
