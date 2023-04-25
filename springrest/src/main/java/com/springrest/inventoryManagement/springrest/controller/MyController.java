@@ -1,5 +1,7 @@
 package com.springrest.inventoryManagement.springrest.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,13 @@ public class MyController {
             return new ResponseEntity<>(employee, HttpStatus.OK);
         }
     }
+    
+    @GetMapping(path="")
+	public List<Employee> getAllEmployees() {
+		//return employees;
+		
+		return employeeService.findAll();
+	}
 
     @PostMapping("")
     public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {

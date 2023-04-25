@@ -22,10 +22,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.findById(employeeId).orElse(null);
     }
 
-    @Override
-    public List<Employee> getAllEmployees() {
-        return employeeRepository.findAll();
-    }
+    
 
     @Override
     public void addEmployee(Employee employee) {
@@ -41,4 +38,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void deleteEmployee(int employeeId) {
         employeeRepository.deleteById(employeeId);
     }
+
+	@Override
+	public List<Employee> findAll() {
+		// TODO Auto-generated method stub
+		return employeeRepository.findAll();
+	}
 }
