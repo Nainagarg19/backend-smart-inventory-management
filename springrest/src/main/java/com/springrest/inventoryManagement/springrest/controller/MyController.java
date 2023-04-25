@@ -6,13 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import com.springrest.inventoryManagement.springrest.entities.Employee;
 import com.springrest.inventoryManagement.springrest.service.EmployeeService;
 
 
 @RestController
-@RequestMapping("/api/employees")
+@RequestMapping(value="/api/employees")
+@CrossOrigin
 public class MyController {
     @Autowired
     private EmployeeService employeeService;
