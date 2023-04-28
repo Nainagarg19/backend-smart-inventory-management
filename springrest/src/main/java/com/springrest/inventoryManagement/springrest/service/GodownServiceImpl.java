@@ -2,6 +2,7 @@ package com.springrest.inventoryManagement.springrest.service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,4 +43,10 @@ public class GodownServiceImpl implements GodownService {
     public void deleteGodowns(int godown_Id) {
     	godownsRepository.deleteById(godown_Id);
     }
+
+	@Override
+	public Optional<Godowns> findById(int godown_Id) {
+		// TODO Auto-generated method stub
+		return Optional.empty();
+	}
 }

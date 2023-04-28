@@ -1,14 +1,16 @@
 package com.springrest.inventoryManagement.springrest.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.CrossOrigin;
+
 import com.springrest.inventoryManagement.springrest.entities.Employee;
 import com.springrest.inventoryManagement.springrest.service.EmployeeService;
+
 
 
 @RestController
@@ -18,50 +20,36 @@ public class MyController {
     @Autowired
     private EmployeeService employeeService;
 
-    @GetMapping("/{employeeId}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable int employeeId) {
-        Employee employee = employeeService.getEmployeeById(employeeId);
-        if (employee == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<>(employee, HttpStatus.OK);
-        }
-    }
-    
-    @GetMapping(path="")
+	
+	@GetMapping
 	public List<Employee> getAllEmployees() {
-		//return employees;
-		
-		return employeeService.findAll();
+		return employeeService.getAllEmployees();
 	}
-
-    @PostMapping("")
-    public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {
-        employeeService.addEmployee(employee);
-        return new ResponseEntity<>(employee, HttpStatus.CREATED);
-    }
-
-    @PutMapping("/{employeeId}")
-    public ResponseEntity<Employee> updateEmployee(@PathVariable int employeeId, @RequestBody Employee employee) {
-        if (employeeService.getEmployeeById(employeeId) == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-            employee.setEmployeeId(employeeId);
-            employeeService.updateEmployee(employee);
-            return new ResponseEntity<>(employee, HttpStatus.OK);
-        }
-    }
-
-    @DeleteMapping("/{employeeId}")
-    public ResponseEntity<Employee> deleteEmployee(@PathVariable int employeeId) {
-        Employee employee = employeeService.getEmployeeById(employeeId);
-        if (employee == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-            employeeService.deleteEmployee(employeeId);
-            return new ResponseEntity<>(employee, HttpStatus.OK);
-        }
-    }
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<Employee> getEmployeeById(@PathVariable int id) {
+		Optional<Employee> optionalEmployee = employeeService.getEmployeeById(id);
+		if (optionalEmployee.isPresent()) {
+			return new ResponseEntity<>(optionalEmployee.get(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@PostMapping
+	public void addEmployee(@RequestBody Employee employee) {
+		employeeService.addEmployee(employee);
+	}
+	
+	@PutMapping("/{id}")
+	public void updateEmployee(@PathVariable int id, @RequestBody Employee employee) {
+		employeeService.updateEmployee(id, employee);
+	}
+	
+	@DeleteMapping("/{id}")
+	public void deleteEmployee(@PathVariable int id) {
+		employeeService.deleteEmployee(id);
+	}
 }
 
 //import java.util.ArrayList;

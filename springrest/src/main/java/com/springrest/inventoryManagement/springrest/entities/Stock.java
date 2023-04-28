@@ -1,11 +1,14 @@
 package com.springrest.inventoryManagement.springrest.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Stock {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int item_id;
 	
 	private int quantity;

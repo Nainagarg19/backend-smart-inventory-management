@@ -2,18 +2,22 @@ package com.springrest.inventoryManagement.springrest.entities;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 
 @Entity
 public class Godowns {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int godown_Id;
 	private String location;
 	private String capacity;
 	private String manager;
 	private Date start_date;
+	
 	public Godowns(int godown_Id, String location, String capacity, String manager, Date start_date) {
 		super();
 		this.godown_Id = godown_Id;
