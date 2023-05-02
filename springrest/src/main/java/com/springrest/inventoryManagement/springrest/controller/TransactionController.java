@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.springrest.inventoryManagement.springrest.entities.Transactions;
+import com.springrest.inventoryManagement.springrest.repository.TransactionRepository;
 import com.springrest.inventoryManagement.springrest.service.TransactionService;
 
 
@@ -23,6 +25,8 @@ import com.springrest.inventoryManagement.springrest.service.TransactionService;
 public class TransactionController {
     @Autowired
     private TransactionService transactionService;
+    @Autowired
+	private TransactionRepository transactionRepository;
     @GetMapping
 	public List<Transactions> getAllTransactions() {
 		return transactionService.getAllTransactions();
@@ -52,4 +56,10 @@ public class TransactionController {
 	public void deleteTransactions(@PathVariable int transaction_Id) {
 		transactionService.deleteTransactions(transaction_Id);
 	}
+	@GetMapping("/item-type/{itemType}")
+	public ResponseEntity<List<Transactions>> getTransactionsByItemType(@PathVariable int itemType) {
+	    List<Transactions> transactions = transactionRepository.findByItemType(itemType);
+	    return ResponseEntity.ok().body(transactions);
+	}
+
 }

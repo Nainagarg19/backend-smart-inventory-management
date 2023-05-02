@@ -38,4 +38,11 @@ public class TransactionService {
 	public void deleteTransactions(int transaction_Id) {
 		transactionRepository.deleteById(transaction_Id);
 	}
+	
+	public List<Transactions> getTransactionsByItemType(int itemType) {
+        return transactionRepository.findByItemType(itemType);
+    }
+	
+	
+	
 }
