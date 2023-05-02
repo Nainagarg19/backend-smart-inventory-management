@@ -14,11 +14,10 @@ public class Godowns {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int godown_Id;
 	private String location;
-	private String capacity;
+	private int capacity;
 	private String manager;
 	private Date start_date;
-	
-	public Godowns(int godown_Id, String location, String capacity, String manager, Date start_date) {
+	public Godowns(int godown_Id, String location, int capacity, String manager, Date start_date) {
 		super();
 		this.godown_Id = godown_Id;
 		this.location = location;
@@ -41,10 +40,10 @@ public class Godowns {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public String getCapacity() {
+	public int getCapacity() {
 		return capacity;
 	}
-	public void setCapacity(String capacity) {
+	public void setCapacity(int capacity) {
 		this.capacity = capacity;
 	}
 	public String getManager() {
@@ -65,5 +64,5 @@ public class Godowns {
 				+ manager + ", start_date=" + start_date + "]";
 	}
 	
-		
+	
 }
