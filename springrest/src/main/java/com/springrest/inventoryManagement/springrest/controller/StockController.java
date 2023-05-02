@@ -2,6 +2,8 @@ package com.springrest.inventoryManagement.springrest.controller;
 
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +15,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.springrest.inventoryManagement.springrest.entities.Stock;
 import com.springrest.inventoryManagement.springrest.service.StockService;
 
@@ -23,48 +24,33 @@ public class StockController {
     @Autowired
     private StockService stockService;
 
-    @GetMapping("/{item_id}")
-    public ResponseEntity<Stock> getGodownsById(@PathVariable int item_id) {
-    	Stock stock = stockService.getStockById(item_id);
-        if (stock == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<>(stock, HttpStatus.OK);
-        }
-    }
-    
-    @GetMapping(path="")
-	public List<Stock> getAllGodowns() {
-		//return employees;
-		
-		return stockService.findAll();
+    @GetMapping
+	public List<Stock> getAllStock() {
+		return stockService.getAllStocks();
 	}
-
-    @PostMapping("")
-    public ResponseEntity<Stock> addGodowns(@RequestBody Stock stock) {
-    	stockService.addStock(stock);
-        return new ResponseEntity<>(stock, HttpStatus.CREATED);
-    }
-
-    @PutMapping("/{item_id}")
-    public ResponseEntity<Stock> updateGodowns(@PathVariable int item_id, @RequestBody Stock stock) {
-        if (stockService.getStockById(item_id) == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-        	stock.setItem_id(item_id);
-        	stockService.updateStock(stock);
-            return new ResponseEntity<>(stock, HttpStatus.OK);
-        }
-    }
-
-    @DeleteMapping("/{item_id}")
-    public ResponseEntity<Stock> deleteStock(@PathVariable int item_id) {
-    	Stock stock = stockService.getStockById(item_id);
-        if (stock == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-        	stockService.deleteStock(item_id);
-            return new ResponseEntity<>(stock, HttpStatus.OK);
-        }
-    }
+	
+	@GetMapping("/{item_id}")
+	public ResponseEntity<Stock> getStockById(@PathVariable int item_id) {
+		Optional<Stock> optionalStock = stockService.getStockById(item_id);
+		if (optionalStock.isPresent()) {
+			return new ResponseEntity<>(optionalStock.get(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@PostMapping
+	public void addStock(@RequestBody Stock stock) {
+		stockService.addStock(stock);
+	}
+	
+	@PutMapping("/{item_id}")
+	public void updateStock(@PathVariable int item_id, @RequestBody Stock stock) {
+		stockService.updateStock(item_id, stock);
+	}
+	
+	@DeleteMapping("/{item_id}")
+	public void deleteStock(@PathVariable int item_id) {
+		stockService.deleteStock(item_id);
+	}
 }

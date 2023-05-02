@@ -2,6 +2,7 @@ package com.springrest.inventoryManagement.springrest.controller;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,48 +25,33 @@ public class GodownsController {
     @Autowired
     private GodownService godownsService;
 
-    @GetMapping("/{godown_Id}")
-    public ResponseEntity<Godowns> getGodownsById(@PathVariable int godown_Id) {
-    	Godowns godowns = godownsService.getGodownsById(godown_Id);
-        if (godowns == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<>(godowns, HttpStatus.OK);
-        }
-    }
-    
-    @GetMapping(path="")
+    @GetMapping
 	public List<Godowns> getAllGodowns() {
-		//return employees;
-		
-		return godownsService.findAll();
+		return godownsService.getAllGodowns();
 	}
-
-    @PostMapping("")
-    public ResponseEntity<Godowns> addGodowns(@RequestBody Godowns godowns) {
-    	godownsService.addGodowns(godowns);
-        return new ResponseEntity<>(godowns, HttpStatus.CREATED);
-    }
-
-    @PutMapping("/{godown_Id}")
-    public ResponseEntity<Godowns> updateGodowns(@PathVariable int godown_Id, @RequestBody Godowns godowns) {
-        if (godownsService.getGodownsById(godown_Id) == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-        	godowns.setGodown_Id(godown_Id);
-            godownsService.updateGodowns(godowns);
-            return new ResponseEntity<>(godowns, HttpStatus.OK);
-        }
-    }
-
-    @DeleteMapping("/{godown_Id}")
-    public ResponseEntity<Godowns> deleteGodowns(@PathVariable int godown_Id) {
-    	Godowns godowns = godownsService.getGodownsById(godown_Id);
-        if (godowns == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-        	godownsService.deleteGodowns(godown_Id);
-            return new ResponseEntity<>(godowns, HttpStatus.OK);
-        }
-    }
+	
+	@GetMapping("/{godown_Id}")
+	public ResponseEntity<Godowns> getGodownsById(@PathVariable int godown_Id) {
+		Optional<Godowns> optionalGodowns = godownsService.getGodownsById(godown_Id);
+		if (optionalGodowns.isPresent()) {
+			return new ResponseEntity<>(optionalGodowns.get(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@PostMapping
+	public void addGodowns(@RequestBody Godowns godowns) {
+		godownsService.addGodowns(godowns);
+	}
+	
+	@PutMapping("/{godown_Id}")
+	public void updateGodowns(@PathVariable int godown_Id, @RequestBody Godowns godowns) {
+		godownsService.updateGodowns(godown_Id, godowns);
+	}
+	
+	@DeleteMapping("/{godown_Id}")
+	public void deleteGodowns(@PathVariable int godown_Id) {
+		godownsService.deleteGodowns(godown_Id);
+	}
 }
