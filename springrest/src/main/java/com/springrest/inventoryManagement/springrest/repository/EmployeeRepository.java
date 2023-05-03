@@ -6,5 +6,7 @@ import com.springrest.inventoryManagement.springrest.entities.Employee;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Integer > {
 
+	Employee findByUserNameAndPassword(String userName, String password);
+
 
 }

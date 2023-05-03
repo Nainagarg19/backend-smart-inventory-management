@@ -63,14 +63,23 @@ public class MyController {
 	public void deleteEmployee(@PathVariable int id) {
 		employeeService.deleteEmployee(id);
 	}
-	@GetMapping("/{id}/login")
-    public ResponseEntity<String> employeeLogin(@PathVariable int id, @RequestParam String password) {
-        if (employeeService.employeeLogin(id, password)) {
-            return new ResponseEntity<>("1", HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("0", HttpStatus.UNAUTHORIZED);
-        }
-    }
+//	@GetMapping("/{id}/login")
+//    public ResponseEntity<String> employeeLogin(@PathVariable int id, @RequestParam String password) {
+//        if (employeeService.employeeLogin(id, password)) {
+//            return new ResponseEntity<>("1", HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>("0", HttpStatus.UNAUTHORIZED);
+//        }
+//    }
+	@GetMapping("/login")
+	  public ResponseEntity<String> login(@RequestParam String userName, @RequestParam String password) {
+	    Employee employee = employeeService.login(userName, password);
+	    if (employee != null) {
+	      return ResponseEntity.ok("1");
+	    } else {
+	      return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("0");
+	    }
+	  }
 }
 
 //import java.util.ArrayList;
