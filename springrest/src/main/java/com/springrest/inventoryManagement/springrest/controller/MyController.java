@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springrest.inventoryManagement.springrest.entities.Employee;
+import com.springrest.inventoryManagement.springrest.repository.EmployeeRepository;
 import com.springrest.inventoryManagement.springrest.service.EmployeeService;
 
 
@@ -27,6 +29,9 @@ import com.springrest.inventoryManagement.springrest.service.EmployeeService;
 public class MyController {
     @Autowired
     private EmployeeService employeeService;
+    
+    @Autowired
+	EmployeeRepository employeeRepository;
 
 	
 	@GetMapping
@@ -58,6 +63,14 @@ public class MyController {
 	public void deleteEmployee(@PathVariable int id) {
 		employeeService.deleteEmployee(id);
 	}
+	@GetMapping("/{id}/login")
+    public ResponseEntity<String> employeeLogin(@PathVariable int id, @RequestParam String password) {
+        if (employeeService.employeeLogin(id, password)) {
+            return new ResponseEntity<>("1", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("0", HttpStatus.UNAUTHORIZED);
+        }
+    }
 }
 
 //import java.util.ArrayList;
@@ -97,17 +110,7 @@ public class MyController {
 //		return employeeRepository.findAll();
 //	}
 //	
-//	@GetMapping(path="/employees/{id}/login")
-//	public ResponseEntity<String> employeeLogin(@PathVariable int id, @RequestParam String password) {
-//	    Optional<Employee> employeeFound = employeeRepository.findById(id);
-//	    if (employeeFound.isPresent()) {
-//	        Employee employee = employeeFound.get();
-//	        if (employee.getEmployeePassword().equals(password)) {
-//	            return new ResponseEntity<String>("1", HttpStatus.OK);
-//	        }
-//	    }
-//	    return new ResponseEntity<String>("0", HttpStatus.UNAUTHORIZED);
-//	}
+	
 //	
 //	
 //	@PostMapping(path="/employees")

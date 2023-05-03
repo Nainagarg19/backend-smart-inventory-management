@@ -39,4 +39,14 @@ public class EmployeeService {
 	public void deleteEmployee(int id) {
 		employeeRepository.deleteById(id);
 	}
+	public boolean employeeLogin(int id, String password) {
+        Optional<Employee> employeeFound = employeeRepository.findById(id);
+        if (employeeFound.isPresent()) {
+            Employee employee = employeeFound.get();
+            if (employee.getPassword().equals(password)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
