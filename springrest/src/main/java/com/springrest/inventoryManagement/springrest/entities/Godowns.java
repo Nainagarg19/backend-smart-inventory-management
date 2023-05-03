@@ -17,6 +17,7 @@ public class Godowns {
 	private int capacity;
 	private String manager;
 	private Date start_date;
+	
 	public Godowns(int godown_Id, String location, int capacity, String manager, Date start_date) {
 		super();
 		this.godown_Id = godown_Id;
