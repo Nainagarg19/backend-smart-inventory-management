@@ -43,18 +43,21 @@ public class TransactionController {
 	}
 	
 	@PostMapping
-	public void addTransactions(@RequestBody Transactions transactions) {
+	public String addTransactions(@RequestBody Transactions transactions) {
 		transactionService.addTransactions(transactions);
+		return "Successfull";
 	}
 	
 	@PutMapping("/{transaction_Id}")
-	public void updateTransactions(@PathVariable int transaction_Id, @RequestBody Transactions transactions) {
+	public String updateTransactions(@PathVariable int transaction_Id, @RequestBody Transactions transactions) {
 		transactionService.updateTransactions(transaction_Id, transactions);
+		return "Successfull";
 	}
 	
 	@DeleteMapping("/{transaction_Id}")
-	public void deleteTransactions(@PathVariable int transaction_Id) {
+	public String deleteTransactions(@PathVariable int transaction_Id) {
 		transactionService.deleteTransactions(transaction_Id);
+		return "Successfull";
 	}
 	@GetMapping("/item-type/{itemType}")
 	public ResponseEntity<List<Transactions>> getTransactionsByItemType(@PathVariable int itemType) {

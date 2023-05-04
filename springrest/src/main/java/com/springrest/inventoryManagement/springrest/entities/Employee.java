@@ -1,12 +1,10 @@
 package com.springrest.inventoryManagement.springrest.entities;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Employee {
@@ -25,12 +23,7 @@ public class Employee {
 	private String phoneNo;
 	@Column(name="type")
 	private int type;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	Godowns godowns;
-
-	public Employee(int id, String name, String userName, String email, String password, String phoneNo, int type,
-			Godowns godowns) {
+	public Employee(int id, String name, String userName, String email, String password, String phoneNo, int type) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -39,81 +32,57 @@ public class Employee {
 		this.password = password;
 		this.phoneNo = phoneNo;
 		this.type = type;
-		this.godowns = godowns;
 	}
-
 	public Employee() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
-
 	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public String getUserName() {
 		return userName;
 	}
-
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 	public String getPassword() {
 		return password;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 	public String getPhoneNo() {
 		return phoneNo;
 	}
-
 	public void setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
 	}
-
 	public int getType() {
 		return type;
 	}
-
 	public void setType(int type) {
 		this.type = type;
 	}
-
-	public Godowns getGodowns() {
-		return godowns;
-	}
-
-	public void setGodowns(Godowns godowns) {
-		this.godowns = godowns;
-	}
-
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", name=" + name + ", userName=" + userName + ", email=" + email + ", password="
-				+ password + ", phoneNo=" + phoneNo + ", type=" + type + ", godowns=" + godowns + "]";
+				+ password + ", phoneNo=" + phoneNo + ", type=" + type + "]";
 	}
 	
 	

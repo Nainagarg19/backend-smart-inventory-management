@@ -2,14 +2,10 @@ package com.springrest.inventoryManagement.springrest.entities;
 
 import java.util.Date;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-
-
 
 @Entity
 public class Transactions {
@@ -30,14 +26,9 @@ public class Transactions {
 	private int bill_value;
 	private String delivered_to;
 	private String purpose;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	Godowns godowns;
-	@ManyToOne(cascade = CascadeType.ALL)
-	Stock stock;
 	public Transactions(int transaction_Id, String item_name, String supplier_name, Date date_of_supply, int invoice_no,
 			int quantity, int recieved_by, String checked_by, int item_type, Date date_of_return, Date date_of_del,
-			String return_by, int bill_value, String delivered_to, String purpose, Godowns godowns, Stock stock) {
+			String return_by, int bill_value, String delivered_to, String purpose) {
 		super();
 		this.transaction_Id = transaction_Id;
 		this.item_name = item_name;
@@ -54,11 +45,10 @@ public class Transactions {
 		this.bill_value = bill_value;
 		this.delivered_to = delivered_to;
 		this.purpose = purpose;
-		this.godowns = godowns;
-		this.stock = stock;
 	}
 	public Transactions() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 	public int getTransaction_Id() {
 		return transaction_Id;
@@ -150,28 +140,14 @@ public class Transactions {
 	public void setPurpose(String purpose) {
 		this.purpose = purpose;
 	}
-	public Godowns getGodowns() {
-		return godowns;
-	}
-	public void setGodowns(Godowns godowns) {
-		this.godowns = godowns;
-	}
-	public Stock getStock() {
-		return stock;
-	}
-	public void setStock(Stock stock) {
-		this.stock = stock;
-	}
 	@Override
 	public String toString() {
 		return "Transactions [transaction_Id=" + transaction_Id + ", item_name=" + item_name + ", supplier_name="
 				+ supplier_name + ", date_of_supply=" + date_of_supply + ", invoice_no=" + invoice_no + ", quantity="
 				+ quantity + ", recieved_by=" + recieved_by + ", checked_by=" + checked_by + ", item_type=" + item_type
 				+ ", date_of_return=" + date_of_return + ", date_of_del=" + date_of_del + ", return_by=" + return_by
-				+ ", bill_value=" + bill_value + ", delivered_to=" + delivered_to + ", purpose=" + purpose
-				+ ", godowns=" + godowns + ", stock=" + stock + "]";
+				+ ", bill_value=" + bill_value + ", delivered_to=" + delivered_to + ", purpose=" + purpose + "]";
 	}
-	
 	
 	
 }

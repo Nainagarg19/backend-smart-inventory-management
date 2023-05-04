@@ -9,11 +9,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springrest.inventoryManagement.springrest.entities.Employee;
@@ -44,19 +45,32 @@ public class MyController {
 		}
 	}
 	
+	@PostMapping("/login")
+	public ResponseEntity<Integer> login(@RequestParam String userName, @RequestParam String password) {
+		Employee employee = employeeService.login(userName, password);
+		if (employee != null) {
+			return ResponseEntity.ok(employee.getType());
+			} else {
+				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(2);
+				}
+		}
+	
 	@PostMapping
-	public void addEmployee(@RequestBody Employee employee) {
+	public String addEmployee(@RequestBody Employee employee) {
 		employeeService.addEmployee(employee);
+		return "Successfull";
 	}
 	
-	@PutMapping("/{id}")
-	public void updateEmployee(@PathVariable int id, @RequestBody Employee employee) {
+	@PatchMapping("/{id}")
+	public String updateEmployee(@PathVariable int id, @RequestBody Employee employee) {
 		employeeService.updateEmployee(id, employee);
+		return "Successfull";
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deleteEmployee(@PathVariable int id) {
+	public String deleteEmployee(@PathVariable int id) {
 		employeeService.deleteEmployee(id);
+		return "Successfull";
 	}
 }
 

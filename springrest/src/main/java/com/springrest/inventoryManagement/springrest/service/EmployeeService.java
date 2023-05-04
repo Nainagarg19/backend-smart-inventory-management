@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springrest.inventoryManagement.springrest.entities.Employee;
+import com.springrest.inventoryManagement.springrest.entities.Transactions;
 import com.springrest.inventoryManagement.springrest.repository.EmployeeRepository;
 
 
@@ -23,6 +24,10 @@ public class EmployeeService {
 	public Optional<Employee> getEmployeeById(int id) {
 		return employeeRepository.findById(id);
 	}
+	
+	public Employee login(String userName, String password) {
+		return employeeRepository.findByUserNameAndPassword(userName, password);
+		}
 	
 	public void addEmployee(Employee employee) {
 		employeeRepository.save(employee);

@@ -41,17 +41,20 @@ public class StockController {
 	}
 	
 	@PostMapping
-	public void addStock(@RequestBody Stock stock) {
+	public String addStock(@RequestBody Stock stock) {
 		stockService.addStock(stock);
+		return "Successfull";
 	}
 	
 	@PutMapping("/{item_id}")
-	public void updateStock(@PathVariable int item_id, @RequestBody Stock stock) {
+	public String updateStock(@PathVariable int item_id, @RequestBody Stock stock) {
 		stockService.updateStock(item_id, stock);
+		return "Successfull";
 	}
 	
 	@DeleteMapping("/{item_id}")
-	public void deleteStock(@PathVariable int item_id) {
+	public String deleteStock(@PathVariable int item_id) {
 		stockService.deleteStock(item_id);
+		return "Successfull";
 	}
 }
