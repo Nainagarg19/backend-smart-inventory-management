@@ -51,7 +51,7 @@ public class MyController {
 		if (employee != null) {
 			return ResponseEntity.ok(employee.getType());
 			} else {
-				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(2);
+				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(3);
 				}
 		}
 	
