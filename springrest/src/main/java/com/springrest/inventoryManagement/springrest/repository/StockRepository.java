@@ -6,5 +6,5 @@ import com.springrest.inventoryManagement.springrest.entities.Stock;
 
 public interface StockRepository extends JpaRepository<Stock, Integer > {
 
-
+	Stock findByItemName(String itemName);
 }

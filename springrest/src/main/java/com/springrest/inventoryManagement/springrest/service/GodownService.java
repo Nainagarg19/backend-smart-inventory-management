@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.springrest.inventoryManagement.springrest.entities.Employee;
 import com.springrest.inventoryManagement.springrest.entities.Godowns;
 import com.springrest.inventoryManagement.springrest.repository.GodownsRepository;
 
@@ -38,5 +39,10 @@ public class GodownService {
 	
 	public void deleteGodowns(int godown_Id) {
 		godownsRepository.deleteById(godown_Id);
+	}
+	
+	public List<Godowns> searchGodowns(String keyword){
+		return godownsRepository.findByGodownNameContainingIgnoreCase(keyword);
+		
 	}
 }

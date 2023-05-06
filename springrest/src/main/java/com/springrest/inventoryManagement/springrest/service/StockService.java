@@ -20,23 +20,31 @@ public class StockService {
 		return stockRepository.findAll();
 	}
 	
-	public Optional<Stock> getStockById(int item_id) {
-		return stockRepository.findById(item_id);
+	public Optional<Stock> getStockById(int itemId) {
+		return stockRepository.findById(itemId);
 	}
 	
 	public void addStock(Stock stock) {
 		stockRepository.save(stock);
 	}
 	
-	public void updateStock(int item_id, Stock stock) {
-		Optional<Stock> optionalStock = stockRepository.findById(item_id);
+	public void updateStock(int itemId, Stock stock) {
+		Optional<Stock> optionalStock = stockRepository.findById(itemId);
 		if (optionalStock.isPresent()) {
-			stock.setItem_id(item_id);
+			stock.setItemId(itemId);
 			stockRepository.save(stock);
 		}
 	}
 	
 	public void deleteStock(int item_id) {
 		stockRepository.deleteById(item_id);
+	}
+	
+	public Stock findByItemName(String itemName) {
+		return stockRepository.findByItemName(itemName);
+	}
+
+	public Stock saveStock(Stock stock) {
+		return stockRepository.save(stock);
 	}
 }

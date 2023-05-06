@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springrest.inventoryManagement.springrest.entities.Godowns;
@@ -62,4 +63,12 @@ public class GodownsController {
 		godownsService.deleteGodowns(godown_Id);
 		return "Successfull";
 	}
+	
+	//search
+	@GetMapping("/search")
+	public ResponseEntity<List<Godowns>> searchGodownByName(@RequestParam String godownName){
+		List<Godowns> result= godownsService.searchGodowns(godownName);
+		return new ResponseEntity<List<Godowns>>(result, HttpStatus.OK);
+	}
+	
 }

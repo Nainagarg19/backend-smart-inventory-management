@@ -9,26 +9,30 @@ import jakarta.persistence.Id;
 public class Stock {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int item_id;
+	private int itemId;
 	
 	private int quantity;
+	private String itemName;
 
-	public Stock(int item_id, int quantity) {
+	
+	public Stock(int itemId, int quantity, String itemName) {
 		super();
-		this.item_id = item_id;
+		this.itemId = itemId;
 		this.quantity = quantity;
+		this.itemName = itemName;
 	}
 
 	public Stock() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public int getItem_id() {
-		return item_id;
+	public int getItemId() {
+		return itemId;
 	}
 
-	public void setItem_id(int item_id) {
-		this.item_id = item_id;
+	public void setItemId(int itemId) {
+		this.itemId = itemId;
 	}
 
 	public int getQuantity() {
@@ -39,9 +43,17 @@ public class Stock {
 		this.quantity = quantity;
 	}
 
+	public String getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
 	@Override
 	public String toString() {
-		return "Stock [item_id=" + item_id + ", quantity=" + quantity + "]";
+		return "Stock [itemId=" + itemId + ", quantity=" + quantity + ", itemName=" + itemName + "]";
 	}
 	
 		

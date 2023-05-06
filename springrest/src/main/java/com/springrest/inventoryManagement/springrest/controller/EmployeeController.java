@@ -25,7 +25,7 @@ import com.springrest.inventoryManagement.springrest.service.EmployeeService;
 @RestController
 @RequestMapping(value="/api/employees")
 @CrossOrigin
-public class MyController {
+public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
@@ -72,6 +72,17 @@ public class MyController {
 		employeeService.deleteEmployee(id);
 		return "Successfull";
 	}
+	
+	//search
+	@GetMapping("/search")
+	public ResponseEntity<List<Employee>> searchEmployeeByName(@RequestParam String name){
+		List<Employee> result= employeeService.searchEmployees(name);
+		
+		return new ResponseEntity<List<Employee>>(result, HttpStatus.OK);
+	}
+	
+	
+	
 }
 
 //import java.util.ArrayList;
