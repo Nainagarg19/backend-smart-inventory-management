@@ -46,19 +46,18 @@ public class EmployeeController {
 	}
 	
 	@PostMapping("/login")
-	public ResponseEntity<Integer> login(@RequestParam String userName, @RequestParam String password) {
-		Employee employee = employeeService.login(userName, password);
-		if (employee != null) {
-			return ResponseEntity.ok(employee.getType());
-			} else {
-				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(3);
-				}
-		}
+	public String login(@RequestBody Employee employee) {
+		return employeeService.login(employee);
+//		if (employee != null) {
+//			return ResponseEntity.ok(employee.getType());
+//		} else {
+//			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(3);
+//		}
+	}
 	
 	@PostMapping
 	public String addEmployee(@RequestBody Employee employee) {
-		employeeService.addEmployee(employee);
-		return "Successfull";
+		return employeeService.addEmployee(employee);
 	}
 	
 	@PatchMapping("/{id}")
