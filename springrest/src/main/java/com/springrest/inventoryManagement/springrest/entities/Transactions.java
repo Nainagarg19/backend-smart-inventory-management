@@ -26,10 +26,12 @@ public class Transactions {
 	private int billValue;
 	private String deliveredTo;
 	private String purpose;
+	private String godownName;
+	
 	
 	public Transactions(int transactionId, String itemName, String supplierName, Date dateOfSupply, int invoiceNo,
 			int quantity, int recievedBy, String checkedBy, int itemType, Date dateOfReturn, Date dateOfDel,
-			String returnBy, int billValue, String deliveredTo, String purpose) {
+			String returnBy, int billValue, String deliveredTo, String purpose, String godownName) {
 		super();
 		this.transactionId = transactionId;
 		this.itemName = itemName;
@@ -46,11 +48,14 @@ public class Transactions {
 		this.billValue = billValue;
 		this.deliveredTo = deliveredTo;
 		this.purpose = purpose;
+		this.godownName = godownName;
 	}
+	
 	public Transactions() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	public int getTransactionId() {
 		return transactionId;
 	}
@@ -141,13 +146,23 @@ public class Transactions {
 	public void setPurpose(String purpose) {
 		this.purpose = purpose;
 	}
+
+	public String getGodownName() {
+		return godownName;
+	}
+
+	public void setGodownName(String godownName) {
+		this.godownName = godownName;
+	}
+
 	@Override
 	public String toString() {
 		return "Transactions [transactionId=" + transactionId + ", itemName=" + itemName + ", supplierName="
 				+ supplierName + ", dateOfSupply=" + dateOfSupply + ", invoiceNo=" + invoiceNo + ", quantity="
 				+ quantity + ", recievedBy=" + recievedBy + ", checkedBy=" + checkedBy + ", itemType=" + itemType
 				+ ", dateOfReturn=" + dateOfReturn + ", dateOfDel=" + dateOfDel + ", returnBy=" + returnBy
-				+ ", billValue=" + billValue + ", deliveredTo=" + deliveredTo + ", purpose=" + purpose + "]";
+				+ ", billValue=" + billValue + ", deliveredTo=" + deliveredTo + ", purpose=" + purpose + ", godownName="
+				+ godownName + "]";
 	}
 	
 	

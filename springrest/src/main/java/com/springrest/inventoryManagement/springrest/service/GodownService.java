@@ -45,4 +45,14 @@ public class GodownService {
 		return godownsRepository.findByGodownNameContainingIgnoreCase(keyword);
 		
 	}
+	
+	public Godowns saveGodown(Godowns godowns) {
+		return godownsRepository.save(godowns);
+	}
+	
+	public Godowns findByGodownName(String godownName) {
+		// TODO Auto-generated method stub
+		return godownsRepository.findByGodownName(godownName);
+	}
+	
 }

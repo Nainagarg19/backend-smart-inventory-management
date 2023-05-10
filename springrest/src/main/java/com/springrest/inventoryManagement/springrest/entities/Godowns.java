@@ -18,9 +18,10 @@ public class Godowns {
 	private int capacity;
 	private String manager;
 	private Date start_date;
+	private int quantity;
 	
-	
-	public Godowns(int godown_Id, String godownName, String location, int capacity, String manager, Date start_date) {
+	public Godowns(int godown_Id, String godownName, String location, int capacity, String manager, Date start_date,
+			int quantity) {
 		super();
 		this.godown_Id = godown_Id;
 		this.godownName = godownName;
@@ -28,14 +29,13 @@ public class Godowns {
 		this.capacity = capacity;
 		this.manager = manager;
 		this.start_date = start_date;
+		this.quantity = quantity;
 	}
-	
 	
 	public Godowns() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
 
 	public int getGodown_Id() {
 		return godown_Id;
@@ -74,10 +74,19 @@ public class Godowns {
 		this.godownName = godownName;
 	}
 
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
 	@Override
 	public String toString() {
 		return "Godowns [godown_Id=" + godown_Id + ", godownName=" + godownName + ", location=" + location
-				+ ", capacity=" + capacity + ", manager=" + manager + ", start_date=" + start_date + "]";
-	}	
+				+ ", capacity=" + capacity + ", manager=" + manager + ", start_date=" + start_date + ", quantity="
+				+ quantity + "]";
+	}
 	
 }
