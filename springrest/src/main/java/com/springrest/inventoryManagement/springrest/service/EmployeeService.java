@@ -28,23 +28,23 @@ public class EmployeeService {
 		return employeeRepository.findById(id);
 	}
 	
-	public String login(Employee employee) throws UsernameNotFoundException {
+	public Employee login(String userName, String password) throws UsernameNotFoundException {
 		BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
 
-		Employee optionalEmployee = employeeRepository.findByUserName(employee.getUserName());
+		Employee optionalEmployee = employeeRepository.findByUserName(userName);
 		//return employeeRepository.findByUserNameAndPassword(userName, password);
 
 		if(optionalEmployee != null) {
-			if(bcrypt.matches(employee.getPassword(), optionalEmployee.getPassword())) {
-				return "Authentication successful!";
+			if(bcrypt.matches(password, optionalEmployee.getPassword())) {
+				return optionalEmployee;
 			}
-			else {
-				return "Invalid password";
-			}
+			
 		}
-		//throw new UsernameNotFoundException("User not found");
-		return "User associated with \""+employee.getUserName()+ "\" username not found in the DB";
+		throw new UsernameNotFoundException("User not found");
+		//return optionalEmployee;
+		
 	}
+	
 	
 	public String addEmployee(Employee employee) {
 		BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();

@@ -46,8 +46,8 @@ public class EmployeeController {
 	}
 	
 	@PostMapping("/login")
-	public String login(@RequestBody Employee employee) {
-		return employeeService.login(employee);
+	public Employee login(@RequestParam String userName, @RequestParam String password) {
+		return employeeService.login(userName, password);
 //		if (employee != null) {
 //			return ResponseEntity.ok(employee.getType());
 //		} else {
